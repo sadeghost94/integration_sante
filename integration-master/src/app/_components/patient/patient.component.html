@@ -1,0 +1,150 @@
+<app-main-nav *ngIf="currentUser"></app-main-nav>
+<div class="container">
+
+  <div class="patient-wrapper" fxLayout="row" fxLayoutAlign="center center" style="margin-top: 5em; margin-bottom : 5em; position: relative;">
+    <mat-expansion-panel style="width:100%;max-width:50em; margin-top: 2em; margin-bottom: 2em;">
+      <mat-expansion-panel-header >
+        <mat-panel-title style="color: #323232; font-weight: bold ">
+
+          <i class="material-icons" style="margin-left: 40%">
+            add_box
+          </i>
+          Ajouter un patient
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <mat-card class="box">
+      <mat-card style=" color : white; background : blue;">Informations personnels </mat-card>
+
+
+      <mat-form-field appearance="outline" style="width: 30%;">
+        <mat-label>Nom</mat-label>
+        <input #firstname matInput placeholder="Nom"  color="primary"  >
+      </mat-form-field>
+      <mat-form-field appearance="outline" style="width: 30%;">
+        <mat-label>Prenom</mat-label>
+        <input lastname matInput placeholder="Prenom" color="primary"  >
+      </mat-form-field>
+      <mat-form-field appearance="outline" style="width: 30%;">
+        <mat-label>Date de naissance </mat-label>
+        <input #birthday matInput [matDatepicker]="picker"  placeholder="Date de naissance" color="primary"  >
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker disabled="false"></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field appearance="outline" style="width: 30%;">
+        <mat-label>Genre</mat-label>
+        <select matNativeControl lastname matInput placeholder="Prenom"  >
+          <option></option>
+          <option>Homme</option>
+          <option>Femme</option>
+          <option>Autre</option>
+        </select>
+      </mat-form-field>
+      <mat-form-field appearance="outline" style="width: 30%;">
+        <mat-label>statut civil</mat-label>
+        <input #statut_civil matInput placeholder="statut civil"  color="primary"  >
+      </mat-form-field>
+      <mat-form-field appearance="outline" style="width: 30%;">
+        <mat-label>statut socio-economique</mat-label>
+        <input #statut_socio_econ matInput placeholder="statut socio-economique<"  color="primary"  >
+      </mat-form-field>
+      <mat-form-field appearance="outline" style="width: 30%;">
+        <mat-label>adresse</mat-label>
+        <input #adresse matInput placeholder="adresse"  color="primary"  >
+      </mat-form-field>
+      <mat-form-field appearance="outline" style="width: 30%;">
+        <mat-label>emploi</mat-label>
+        <input #emploi matInput placeholder="emploi"  color="primary"  >
+      </mat-form-field>
+      <mat-form-field appearance="outline" style="width: 30%;">
+        <mat-label>niveau de scolarite</mat-label>
+        <select matNativeControl lastname matInput placeholder="niveau de scolarite"  >
+          <option></option>
+          <option>Primaire</option>
+          <option>Secondaire</option>
+          <option>Post-Universitaire</option>
+          <option>Universitaire</option>
+        </select>
+      </mat-form-field>
+
+
+      <mat-card style=" color : white; background : blue;"> Dossier medical </mat-card>
+      <mat-form-field appearance="outline">
+        <mat-label>VO2_peak : La consommation maximale d'oxygène</mat-label>
+        <input type="number" #VO2_peak matInput placeholder="VO2_peak : La consommation maximale d'oxygène">
+      </mat-form-field>    <mat-form-field appearance="outline">
+      <mat-label>pression artérielle</mat-label>
+      <input type="number" #pression_artérielle matInput placeholder="pression artérielle" min="9" max="14">
+    </mat-form-field>    <mat-form-field appearance="outline">
+      <mat-label>FC repos</mat-label>
+      <input type="number" #fc_repos matInput placeholder="FC repos">
+    </mat-form-field>    <mat-form-field appearance="outline">
+      <mat-label>IMC</mat-label>
+      <input type="number" #imc matInput placeholder="IMC">
+    </mat-form-field>    <mat-form-field appearance="outline">
+      <mat-label>tour de taille</mat-label>
+      <input type="number" #tour_taille matInput placeholder="tour de taille">
+    </mat-form-field>    <mat-form-field appearance="outline">
+      <mat-label>bilan lipidique</mat-label>
+      <input type="number" #bilan_lipidique matInput placeholder="bilan lipidique">
+    </mat-form-field>    <mat-form-field appearance="outline">
+      <mat-label>glycemine</mat-label>
+      <input type="number" #glycemine matInput placeholder="glycemine">
+    </mat-form-field>    <mat-form-field appearance="outline">
+      <mat-label>hbA1c</mat-label>
+      <input type="number" #hbA1c matInput placeholder="hbA1c">
+    </mat-form-field>
+
+
+
+
+
+
+
+      <button mat-stroked-button ( color="primary" class="btn-block">Enregistrer
+        <img  src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAA
+        AAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+      </button>
+
+
+
+    </mat-card>
+    </mat-expansion-panel>
+  </div>
+
+
+  <div class="patient-wrapper" fxLayout="row" fxLayoutAlign="center center" style="margin-top: 5em; margin-top : 5em; position: relative;">
+
+    <mat-expansion-panel style="width:100%;max-width:50em; ">
+      <mat-expansion-panel-header >
+        <mat-panel-title style="color: #323232; font-weight: bold ">
+
+          <i class="material-icons" style="margin-left: 40%">
+            filter_list
+          </i>
+          Listes des patient
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+  <mat-divider></mat-divider>
+
+    <div class="patient-wrapper" fxLayout="row" fxLayoutAlign="center center" style="margin-top: 5em; position: relative;">
+      <mat-card class="box">
+        <mat-card>Listes des patients:</mat-card>
+
+
+
+
+
+
+    <mat-divider></mat-divider>
+
+
+
+
+   <!-- <app-chart [parentData]="patientsChild"></app-chart>-->
+
+      </mat-card>
+  </div>
+  </mat-expansion-panel>
+  </div>
+</div>
