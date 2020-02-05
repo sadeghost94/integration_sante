@@ -32,6 +32,7 @@ import { ForgetpasswordComponent } from './_components/forgetpassword/forgetpass
 import { ConfirmaccountComponent } from './_components/confirmaccount/confirmaccount.component';
 import {MatSnackBar} from "@angular/material";
 import { ResetpasswordComponent } from './_components/resetpassword/resetpassword.component';
+import {InviteComponent} from "./_components/invite/invite.component";
 
 
 @NgModule({
@@ -47,6 +48,8 @@ import { ResetpasswordComponent } from './_components/resetpassword/resetpasswor
     ForgetpasswordComponent,
     ConfirmaccountComponent,
     ResetpasswordComponent,
+    InviteComponent,
+
 
 
 
@@ -74,8 +77,6 @@ import { ResetpasswordComponent } from './_components/resetpassword/resetpasswor
     MatInputModule,
     NgMaterialMultilevelMenuModule,
     MainNavModule,
-
-
 
     OAuthModule.forRoot()
   ],

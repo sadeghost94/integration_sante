@@ -25,7 +25,7 @@ export class ForgetpasswordComponent implements OnInit {
               private authenticationService: AuthenticationService,
               private _snackBar : MatSnackBar
   ) {
-    if (this.authenticationService.currentUserValue) {
+    if (this.authenticationService.currentUser === undefined) {
       this.router.navigate(['/home']);
     }
   }

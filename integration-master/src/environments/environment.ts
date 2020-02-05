@@ -3,11 +3,16 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: true,
-  environmentName: 'Development',
-  apiUrl: 'development url',
-  LOGIN_URL : '',FORGET_PASSWORD_URL: "",CONFIRMATION_EMAIL_URL :"",PASSWORD_UPDATE_TOKEN_URL : "",PASSWORD_UPDATE_URL:"",
-  LOG_OUT_URL:""
+  production: false,
+  LOGIN_URL: '',
+  FORGET_PASSWORD_URL: "",
+  CONFIRMATION_EMAIL_URL: "",
+  PASSWORD_UPDATE_TOKEN_URL: "",
+  PASSWORD_UPDATE_URL: "",
+  LOG_OUT_URL: "",
+  REGISTER_URL: "",
+  INVITER_URL: "",
+  VERIF_TOK_INVITE : ""
 };
 
 /*

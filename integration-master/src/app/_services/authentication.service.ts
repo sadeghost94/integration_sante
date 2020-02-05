@@ -13,15 +13,20 @@ export class AuthenticationService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
   LOGIN_URL: string
-  FORGET_PASSWORD_URL : string;
+  FORGET_PASSWORD_URL: string;
   CONFIRMATION_EMAIL_URL: string;
-  PASSWORD_UPDATE_TOKEN_URL : string;
+  PASSWORD_UPDATE_TOKEN_URL: string;
   PASSWORD_UPDATE_URL: string;
 
   constructor(private http: HttpClient) {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
     this.LOGIN_URL = environment.LOGIN_URL;
+    this.FORGET_PASSWORD_URL = environment.FORGET_PASSWORD_URL;
+    this.CONFIRMATION_EMAIL_URL = environment.CONFIRMATION_EMAIL_URL;
+    this.PASSWORD_UPDATE_TOKEN_URL = environment.PASSWORD_UPDATE_TOKEN_URL;
+    this.PASSWORD_UPDATE_URL = environment.PASSWORD_UPDATE_URL;
+
   }
 
   public get currentUserValue(): User {
@@ -66,14 +71,14 @@ export class AuthenticationService {
 
 
   }
-
+// fonction pour mot de passe oublie
   forgetPassword(email: string) {
     let passDto = new PasswordUpdateDto();
     passDto.email = email
     return this.http.post(this.FORGET_PASSWORD_URL, passDto);
   }
 
-
+// verifie le token et active le compte si le token est valide
   confirmationEmail(token: string): Observable<Object> {
     let header = new HttpHeaders({'Content-type': 'application/x-www-form-urlencoded; charset=utf-8'});
 
@@ -82,17 +87,17 @@ export class AuthenticationService {
 
 
   }
-
-  passwordUpdateToken(token: string): Observable<Object> {
-    let header = new HttpHeaders({'Content-type': 'application/x-www-form-urlencoded; charset=utf-8'});
+  // verifier la validite token du lien envoyer par mail pour changer le mot de passe
+    passwordUpdateToken(token: string): Observable<Object> {
+      let header = new HttpHeaders({'Content-type': 'application/x-www-form-urlencoded; charset=utf-8'});
 
     return this.http.get(this.PASSWORD_UPDATE_TOKEN_URL + token,
       {responseType: 'text'});
 
 
   }
-
-  passwordUpdate(token : string , password : string): Observable<Object> {
+  //changement du mot de passe
+  passwordUpdate(token: string, password: string): Observable<Object> {
     let params = new HttpParams()
       .set('token', token)
       .set('password', password)
@@ -101,9 +106,8 @@ export class AuthenticationService {
 
     return this.http.post(this.PASSWORD_UPDATE_URL, null, {
       headers: header,
-      params: params })
-
-
+      params: params
+    })
 
 
   }

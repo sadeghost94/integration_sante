@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AuthenticationService, SnackBar} from "../../_services";
@@ -14,17 +14,19 @@ import {first} from "rxjs/operators";
 export class ResetpasswordComponent implements OnInit {
   resetForm: FormGroup;
   submitted = false;
-  tokenpassword : string;
+  tokenpassword: string;
 
   constructor(private formBuilder: FormBuilder,
               private route: ActivatedRoute,
               private router: Router,
-              private _snackBar : MatSnackBar,
+              private _snackBar: MatSnackBar,
               private authenticationService: AuthenticationService) {
     if (this.authenticationService.currentUserValue) {
       this.router.navigate(['/home']);
+    }else {
+      this.getCodeFromURI();
     }
-    this.getCodeFromURI();
+
 
   }
 
@@ -42,7 +44,10 @@ export class ResetpasswordComponent implements OnInit {
       ]]
     });
   }
-  get f() { return this.resetForm.controls; }
+
+  get f() {
+    return this.resetForm.controls;
+  }
 
   onSubmit() {
     this.submitted = true;
@@ -51,36 +56,37 @@ export class ResetpasswordComponent implements OnInit {
     if (this.resetForm.invalid) {
       return;
     }
-    if(this.f.password.value != this.f.comfirmpassword.value ) {
+    if (this.f.password.value != this.f.comfirmpassword.value) {
       console.log("eroor")
-    }else {
+    } else {
 
       console.log(this.tokenpassword)
-      console.log(this.f.comfirmpassword.value)
+      //console.log(this.f.comfirmpassword.value)
 
 
-      this.authenticationService.passwordUpdate(this.tokenpassword,this.f.password.value)
-         .pipe(first())
-         .subscribe(
-           data => {
-                this._snackBar.open("votre mot de passe a ete modifie","OK")
-             this.router.navigate(['login']);
-             //location.reload();
-           },
-           error => {
+      this.authenticationService.passwordUpdate(this.tokenpassword, this.f.password.value)
+        .pipe(first())
+        .subscribe(
+          data => {
+            console.log(data)
+            this._snackBar.open("votre mot de passe a ete modifie", "OK")
+            this.router.navigate(['login']);
+            //location.reload();
+          },
+          error => {
 
 
-
-
-           });
+          });
     }
 
   }
+
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {
       duration: 20000,
 
-    })}
+    })
+  }
 
 
   getCodeFromURI() {
@@ -94,12 +100,12 @@ export class ResetpasswordComponent implements OnInit {
           this.tokenpassword = token;
           let message = this.authenticationService.passwordUpdateToken(token).subscribe(
             response => {
+              console.log(response)
               let tokrep = JSON.parse(response.toString())
               console.log(tokrep.tokenExist)
-              if (tokrep.tokenExist)
-              {
+              if (tokrep.tokenExist) {
 
-              }else {
+              } else {
                 this.router.navigate(["forgetpassword"])
               }
 
@@ -112,9 +118,6 @@ export class ResetpasswordComponent implements OnInit {
         }
       });
   }
-
-
-
 
 
 }

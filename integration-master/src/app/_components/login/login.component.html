@@ -3,7 +3,7 @@
 
   <mat-card class="box">
     <mat-card-header>
-      <mat-card-title>Connexion</mat-card-title>
+      <mat-card-title style="font-family: 'Helvetica Neue'; font-weight: bold; color: blue; margin-bottom: 1em; margin-top: 1em;">Connexion</mat-card-title>
     </mat-card-header>
 
     <form  [formGroup]="loginForm" (ngSubmit)="onSubmit()" >
@@ -26,7 +26,6 @@
           <div *ngIf="f.password.errors.required" style="color: brown; font-size: larger;">le mot de passe est obligatoire</div>
       </div>
 
-          <mat-checkbox formControlName="remember" (click)="onContainerClick()" matNativeControl >Se souvenir de moi</mat-checkbox>
 
 
 

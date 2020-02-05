@@ -33,17 +33,17 @@ appitems  = [
       externalRedirect: true
     },
     {
-      label: 'GESTION DES UTILISATEURS',
+      label: 'ADMINSTRATION',
       icon: 'supervised_user_circle',
       items: [
         {
-          label: '____Utilisateurs',
-          link: '/register',
+          label: 'Utilisateur',
+          link: '/inviter',
           icon: 'supervisor_account',
 
         },
         {
-          label: '____Profils',
+          label: 'Profil',
           link: '/profile',
           icon: 'perm_identity'
         }
@@ -112,7 +112,8 @@ appitems  = [
   }
   logOut() {
       let token  = localStorage.getItem("currentToken");
-
+        console.log(this.LOG_OUT_URL
+        )
     const obj = JSON.parse(token);
      let header = new HttpHeaders({'Authorization': obj.access_token});
        this.http.delete(this.LOG_OUT_URL, { headers : header})
