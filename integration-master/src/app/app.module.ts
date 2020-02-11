@@ -33,11 +33,19 @@ import { ConfirmaccountComponent } from './_components/confirmaccount/confirmacc
 import {MatSnackBar} from "@angular/material";
 import { ResetpasswordComponent } from './_components/resetpassword/resetpassword.component';
 import {InviteComponent} from "./_components/invite/invite.component";
+import {MainNavProfComponent} from "./_components/main-nav-prof/main-nav-prof.component";
+import { MainNavModuleProf} from "./_components/main-nav-prof/main-nav.module-prof";
+import { HomeProComponent } from './_components/home-pro/home-pro.component';
+import { ListUsersComponent } from './_components/list-users/list-users.component';
+import { HomeseaComponent } from './_components/homesea/homesea.component';
+import {MainNavSeaComponent} from "./_components/main-nav-sea/main-nav-sea.component";
+import { RechercheComponent } from './_components/recherche/recherche.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    MainNavSeaComponent,
     LoginComponent,
     Error404Component,
     RegisterComponent,
@@ -49,6 +57,11 @@ import {InviteComponent} from "./_components/invite/invite.component";
     ConfirmaccountComponent,
     ResetpasswordComponent,
     InviteComponent,
+    MainNavProfComponent,
+    HomeProComponent,
+    ListUsersComponent,
+    HomeseaComponent,
+    RechercheComponent
 
 
 
@@ -77,6 +90,7 @@ import {InviteComponent} from "./_components/invite/invite.component";
     MatInputModule,
     NgMaterialMultilevelMenuModule,
     MainNavModule,
+    MainNavModuleProf,
 
     OAuthModule.forRoot()
   ],

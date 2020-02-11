@@ -18,8 +18,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   loading = false;
   submitted = false;
-  checked = false;
-  pass : string;
+
 
   constructor(
     private formBuilder: FormBuilder,
@@ -30,8 +29,10 @@ export class LoginComponent implements OnInit {
     private _snackBar : MatSnackBar
 ) {
     // redirect to home if already logged in
-    if (this.authenticationService.currentUserValue) {
-        this.router.navigate(['/home']);
+    if (localStorage.getItem("currentRole")==="role_professional") {
+        this.router.navigate(['/homepro']);
+    } else if(localStorage.getItem("currentRole")==="role_admin") {
+       this.router.navigate(['/home']);
     }
 }
 
@@ -54,18 +55,7 @@ export class LoginComponent implements OnInit {
 
   }
 
-  onContainerClick(){
-    if(this.checked){
-      this.checked = false;
-      console.log(this.checked)
 
-    }else{
-      this.checked = true;
-      console.log(this.checked)
-    }
-
-
-  }
 
   get f() { return this.loginForm.controls; }
 
@@ -83,22 +73,36 @@ export class LoginComponent implements OnInit {
         .pipe(first())
         .subscribe(
             data => {
-              //console.log(data)
+              console.log(localStorage.getItem("currentToken"))
+             if (localStorage.getItem("currentRole")=== "role_admin")
+             {
+               console.log(localStorage.getItem("currentRole"))
+               this.router.navigate(['home'])
 
-              this.router.navigate(['home'])
+             }else  if (localStorage.getItem("currentRole") === "role_professional")
+             {
+               console.log(localStorage.getItem("currentRole"))
+               this.router.navigate(['home/professional'])
+             }else  if (localStorage.getItem("currentRole") === "role_searcher")
+             {
+               console.log(localStorage.getItem("currentRole"))
+               this.router.navigate(['home/searcher'])
+             }
+             else {
+               this.router.navigate(['login'])
+             }
+
+
               //location.reload();
             },
             error => {
 
+              console.log(error)
                 this.loading = false;
                 //const err = JSON.parse(error);
-                if(error.error.error_description === "Bad credentials" ){
-                  this._snackBar.open(" Mot de passe incorrect ","OK")
-                  this.alertService.success("\" Mot de passe incorrect \"",false)
-                }
-              if(error.error.error_description === "User is disabled" ){
-                this._snackBar.open(" Cet utilisateur n est pas active ","OK")
-              }
+
+                this._snackBar.open(error.error.error_description,"OK")
+
 
             });
 

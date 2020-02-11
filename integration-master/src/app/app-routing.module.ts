@@ -12,14 +12,22 @@ import {ForgetpasswordComponent} from "./_components/forgetpassword/forgetpasswo
 import {ConfirmaccountComponent} from "./_components/confirmaccount/confirmaccount.component";
 import {ResetpasswordComponent} from "./_components/resetpassword/resetpassword.component";
 import {InviteComponent} from "./_components/invite/invite.component";
+import {HomeProComponent} from "./_components/home-pro/home-pro.component";
+import {HomeseaComponent} from "./_components/homesea/homesea.component";
+import {RechercheComponent} from "./_components/recherche/recherche.component";
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
   { path: 'login', component: LoginComponent  },
   { path: 'home', component: HomeComponent  ,canActivate: [AuthGuard] },
+  { path: 'home/professional', component: HomeProComponent  ,canActivate: [AuthGuard] },
+  { path: 'home/searcher', component: HomeseaComponent  ,canActivate: [AuthGuard] },
+
   { path: 'profile', component: ProfileComponent ,//canActivate: [AuthGuard]
   },
   { path: 'patient', component: PatientComponent,//canActivate: [AuthGuard]
+  },
+  { path: 'recherche', component: RechercheComponent,//canActivate: [AuthGuard]
   },
   { path: 'inviter', component: InviteComponent,//canActivate: [AuthGuard]
   },

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input ,ViewChild } from '@angular/core';
 import {chainedInstruction} from "@angular/compiler/src/render3/view/util";
 import  { AppComponent} from "../../app.component";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -13,7 +14,12 @@ export class HomeComponent implements OnInit {
   //@Input() is_admin : boolean = false;
   currentUser = localStorage.getItem("currentUser")
   @ViewChild(AppComponent, {static: false}) child;
-  constructor() {
+  constructor(private router : Router) {
+    if (localStorage.getItem("currentRole" ) === "role_admin") {
+
+    } else {
+      router.navigate(["/"])
+    }
 
    }
 

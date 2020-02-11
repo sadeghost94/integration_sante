@@ -7,6 +7,7 @@ import {Token, User} from '../_models';
 import {LoginClientDTO} from "../dto/LoginClientDTO";
 import {PasswordUpdateDto} from "../dto";
 import {environment} from "../../environments/environment";
+import {Router} from "@angular/router";
 
 @Injectable({providedIn: 'root'})
 export class AuthenticationService {
@@ -17,8 +18,9 @@ export class AuthenticationService {
   CONFIRMATION_EMAIL_URL: string;
   PASSWORD_UPDATE_TOKEN_URL: string;
   PASSWORD_UPDATE_URL: string;
+  LOG_OUT_URL: string;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,private router : Router) {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
     this.LOGIN_URL = environment.LOGIN_URL;
@@ -26,6 +28,8 @@ export class AuthenticationService {
     this.CONFIRMATION_EMAIL_URL = environment.CONFIRMATION_EMAIL_URL;
     this.PASSWORD_UPDATE_TOKEN_URL = environment.PASSWORD_UPDATE_TOKEN_URL;
     this.PASSWORD_UPDATE_URL = environment.PASSWORD_UPDATE_URL;
+    this.LOG_OUT_URL = environment.LOG_OUT_URL;
+
 
   }
 
@@ -56,11 +60,32 @@ export class AuthenticationService {
 
             localStorage.setItem('currentToken', JSON.stringify(token));
             let code = localStorage.getItem('currentToken')
-            console.log(token);
             let decoded = jwtDecode(code)
+            let role = decoded["authorities"]
+            console.log(role)
+            let found = role.indexOf("role_admin");
+            if(found >= 0){
+              console.log(found)
+            }else {
+              found = role.indexOf("role_professional");
+              if(found  >= 0){
+                console.log(found)
+                } else
+                {
+                  found = role.indexOf("role_searcher");
+                  if(found  >= 0){
+                    console.log(found)
+                  } else
+                  {
 
+                  }
+                }
+
+            }
+            console.log(role[found])
+            localStorage.setItem("currentRole",role[found])
             localStorage.setItem('currentUser', JSON.stringify(decoded));
-            //this.currentUserSubject.next(this.user);
+            console.log(localStorage.getItem("currentRole"))
             this.isAuthenticated();
 
           }
@@ -114,7 +139,21 @@ export class AuthenticationService {
 
   logout() {
     // remove user from local storage to log user out
-    localStorage.removeItem('currentUser');
-    this.currentUserSubject.next(null);
+    let token = localStorage.getItem("currentToken");
+    const obj = JSON.parse(token);
+    let header = new HttpHeaders({'Authorization': "bearer "+obj.access_token});
+    this.http.delete(this.LOG_OUT_URL, {headers: header})
+      .subscribe(response => {
+
+          this.router.navigate(["/login"])
+          localStorage.removeItem("currentUser")
+          localStorage.removeItem("currentToken")
+          localStorage.removeItem("currentRole")
+
+
+        },
+        error => console.log(error)
+      );
+
   }
 }

@@ -1,16 +1,6 @@
 <div class="container">
 <div class="register-wrapper" fxLayout="row" fxLayoutAlign="center center" style=" margin-top: 0em; position: relative;">
-  <mat-expansion-panel style="width:100%;max-width:40em; margin-top: 2em; margin-bottom: 2em; ">
-    <mat-expansion-panel-header >
-      <mat-panel-title style="color: #323232; font-weight: bold ">
 
-        <i class="material-icons" style="margin-left: 40%">
-          add_box
-        </i>
-        Activation du compte
-
-      </mat-panel-title>
-    </mat-expansion-panel-header>
   <mat-card class="box" style=" ">
     <mat-card-header>
       <mat-card-title style="font-size: small; color: crimson; font-weight: bold">
@@ -65,12 +55,13 @@
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Ville</mat-label>
-      <input #city matInput placeholder="Ville" [matAutocomplete]="auto" [formControl]="stateCtrl">
+      <input #city  matInput placeholder="Ville" [matAutocomplete]="auto" [formControl]="stateCtrl" aria-label="City">
       <mat-autocomplete #auto="matAutocomplete">
-        <mat-option *ngFor="let c of cittty" [value]="c" height="2">
-          {{ c }}
+        <mat-option  *ngFor="let c of filteredStates  | async" [value]="c.city">
+          {{ c.city }}
         </mat-option>
       </mat-autocomplete>
+
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>province</mat-label>
@@ -97,7 +88,6 @@
       </button>
 
   </mat-card>
-  </mat-expansion-panel>
 </div>
 </div>
 

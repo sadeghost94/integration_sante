@@ -9,7 +9,7 @@ import {map, startWith} from 'rxjs/operators';
 
 
 import {AlertService, AuthenticationService, UserService} from '../../_services';
-import {RegistrationClientDTO} from "../../dto";
+import {UserRequestDto} from "../../dto";
 import {ErrorStateMatcher} from '@angular/material/core';
 import {MatDatepickerInputEvent} from "@angular/material";
 import {AccountDto} from "../../dto/AccountDto";
@@ -65,19 +65,15 @@ export class InviteComponent implements OnInit {
 
   ) {
 
-    if (this.currentUser) {
+    if (localStorage.getItem("currentRole" ) === "role_admin") {
 
-
-    }else{
-      this.router.navigate(['/']);
-
-
-
+    } else {
+      router.navigate(["/"])
     }
 
     this.profilelist = [
-      new Profile( "PROFESSIONAL", "PRO",  true),
-      new Profile( "SEARCHER", "SEA",  true)
+      new Profile( "PROFESSIONAL", "role_professional",  true),
+      new Profile( "SEARCHER", "role_searcher",  true)
 
 
     ];
@@ -108,6 +104,7 @@ export class InviteComponent implements OnInit {
 
 
 
+    console.log(roleeDto)
 
     let data = new UserInviteDto(this.user.user_name,
      emailDto, roleeDto, null, null, null,null,null,null )

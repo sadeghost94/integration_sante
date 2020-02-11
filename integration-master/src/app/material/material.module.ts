@@ -27,7 +27,9 @@ import {
   MatAutocompleteModule,
   MatProgressBarModule,
   MatDialogModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatSortModule,
+
 
 
 
@@ -63,7 +65,9 @@ const MaterialComponents = [
   MatAutocompleteModule,
   MatProgressBarModule,
   MatDialogModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatSortModule,
+
 
 
 

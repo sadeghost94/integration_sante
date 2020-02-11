@@ -13,14 +13,11 @@ export class ProfileComponent implements OnInit {
 
   constructor(private  router: Router,
   private authenticationService: AuthenticationService) {
-    if (this.currentUser) {
+    if (localStorage.getItem("currentRole" ) === "role_admin") {
 
-
-    }else{
-      this.router.navigate(['/']);
-
+    } else {
+      router.navigate(["/"])
     }
-
 }
 
   ngOnInit() {

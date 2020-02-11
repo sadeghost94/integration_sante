@@ -10,5 +10,7 @@ export const environment = {
   LOG_OUT_URL: 'https://epod-zuul.herokuapp.com/api/v1/auth-service/logingout',
   REGISTER_URL: 'https://epod-zuul.herokuapp.com/api/v1/auth-service/create/user',
   INVITER_URL: 'https://epod-zuul.herokuapp.com/api/v1/auth-service/user/invite',
-  VERIF_TOK_INVITE : "https://epod-zuul.herokuapp.com/api/v1/auth-service/user/invite?token="
+  VERIF_TOK_INVITE : "https://epod-zuul.herokuapp.com/api/v1/auth-service/user/invite?token=",
+  USERS_URL : "",
+  BLOCK_USER_URL : "https://epod-zuul.herokuapp.com/api/v1/auth-service/update/user/enable"
 };

@@ -1,15 +1,16 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Observable } from 'rxjs';
-import { Router, ActivatedRoute } from '@angular/router';
+import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
+import {Observable} from 'rxjs';
+import {Router, ActivatedRoute} from '@angular/router';
 import {environment} from "../../../environments/environment";
 
 
-
-
-import { map, shareReplay } from 'rxjs/operators';
+import {first, map, shareReplay} from 'rxjs/operators';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-declare var  appitems ;
+import {LoginClientDTO} from "../../dto/LoginClientDTO";
+import {AuthenticationService} from "../../_services";
+
+declare var appitems;
 
 @Component({
   selector: 'app-main-nav',
@@ -17,14 +18,12 @@ declare var  appitems ;
   styleUrls: ['./main-nav.component.css']
 })
 export class MainNavComponent {
- currentUser = localStorage.getItem("currentUser");
- obj : any;
- LOG_OUT_URL : string;
+  currentUser = localStorage.getItem("currentUser");
+  obj: any;
 
 
 
-
-appitems  = [
+  appitems = [
     {
       label: 'E-pod Sante',
       icon: '',
@@ -89,44 +88,35 @@ appitems  = [
       map(result => result.matches),
       shareReplay()
     );
-    selectedItem($event) {
-      console.log(this.currentUser)
 
-
-    }
-
-    selectedLabel($event) {
-    }
-
-
-
-  constructor(private breakpointObserver: BreakpointObserver, private router : Router, private http: HttpClient) {
-          if (this.currentUser)
-          {  this.obj = JSON.parse(this.currentUser)
-            this.LOG_OUT_URL = environment.LOG_OUT_URL;
-            console.log(this.currentUser)
-
-          }
+  selectedItem($event) {
+    console.log(this.currentUser)
 
 
   }
+
+  selectedLabel($event) {
+  }
+
+
+  constructor(private breakpointObserver: BreakpointObserver, private router: Router, private http: HttpClient, private authenticationService : AuthenticationService) {
+    if (localStorage.getItem("currentRole" ) === "role_admin"){
+      this.obj = JSON.parse(this.currentUser)
+      console.log(this.obj)
+
+    }else {
+      router.navigate(["/"])
+    }
+
+
+  }
+
   logOut() {
-      let token  = localStorage.getItem("currentToken");
-        console.log(this.LOG_OUT_URL
-        )
-    const obj = JSON.parse(token);
-     let header = new HttpHeaders({'Authorization': obj.access_token});
-       this.http.delete(this.LOG_OUT_URL, { headers : header})
-       .subscribe(response => {
-          localStorage.removeItem("currentUser")
-           localStorage.removeItem("currentToken")
-         this.router.navigate(["/login"])
-         },
-         error => console.log(error)
-       );
+    this.authenticationService.logout()
 
 
-       }
+
+  }
 
 }
 

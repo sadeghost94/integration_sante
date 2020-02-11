@@ -12,7 +12,7 @@ export class PatientComponent implements OnInit {
   currentUser = localStorage.getItem("currentUser");
   constructor(private router: Router,
     private authenticationService: AuthenticationService,) {
-    if (this.currentUser) {
+    if (localStorage.getItem("currentRole" ) === "role_professional") {
 
 
     }else{

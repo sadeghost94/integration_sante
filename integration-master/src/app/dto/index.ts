@@ -1,2 +1,2 @@
-export * from "./RegistrationClientDTO";
+export * from "./UserRequestDto";
 export * from "./PasswordUpdateDto";

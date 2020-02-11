@@ -5,19 +5,21 @@ import {InstitutionDto} from "./InstitutionDto";
 import {RoleDto} from "./roleDto";
 
 
-export class RegistrationClientDTO{
-  accountDto : AccountDto;
-  addressDto	: AddressDto;
+export class UserRequestDto{
+  id : string;
+  account : AccountDto;
+  address	: AddressDto;
   birthday	: string;
-  emailDto :	EmailDto;
+  email :	EmailDto;
   firstName: String
   lastName: String;
   middleName : String;
-  institutionDto:	InstitutionDto;
-  roleDto : RoleDto;
+  institution:	InstitutionDto;
+  role : RoleDto;
 
 
-  constructor(accountDto: AccountDto,
+  constructor(id : string,
+              accountDto: AccountDto,
               birthday: string,
               emailDto: EmailDto,
               firstName: String,
@@ -27,15 +29,16 @@ export class RegistrationClientDTO{
               roleDto: RoleDto,
               addressDto :AddressDto
   ) {
-    this.accountDto = accountDto;
+    this.id = id;
+    this.account = accountDto;
     this.birthday = birthday;
-    this.emailDto = emailDto;
+    this.email = emailDto;
     this.firstName = firstName;
     this.lastName = lastName;
     this.middleName = middleName;
-    this.institutionDto = institutionDto;
-    this.roleDto = roleDto;
-    this.addressDto = addressDto;
+    this.institution = institutionDto;
+    this.role = roleDto;
+    this.address = addressDto;
   }
 
 

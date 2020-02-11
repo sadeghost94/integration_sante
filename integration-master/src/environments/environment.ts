@@ -12,7 +12,9 @@ export const environment = {
   LOG_OUT_URL: "",
   REGISTER_URL: "",
   INVITER_URL: "",
-  VERIF_TOK_INVITE : ""
+  VERIF_TOK_INVITE : "",
+  USERS_URL : "",
+  BLOCK_USER_URL : ""
 };
 
 /*
