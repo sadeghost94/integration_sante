@@ -1,14 +1,16 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import {Observable} from 'rxjs';
+import { RouterModule } from '@angular/router';
 import {Router, ActivatedRoute} from '@angular/router';
-import {environment} from "../../../environments/environment";
+import {environment} from "../../../../environments/environment";
 
 
 import {first, map, shareReplay} from 'rxjs/operators';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {LoginClientDTO} from "../../dto/LoginClientDTO";
-import {AuthenticationService} from "../../_services";
+import {LoginClientDTO} from "../../../dto/LoginClientDTO";
+import {AuthenticationService} from "../../../_services";
+import {MatSidenav} from "@angular/material/sidenav";
 
 declare var appitems;
 
@@ -21,7 +23,23 @@ export class MainNavComponent {
   currentUser = localStorage.getItem("currentUser");
   obj: any;
 
+  @ViewChild('sidenav',{static : false}) sidenav: MatSidenav;
+  isExpanded = true;
+  showSubmenu: boolean = false;
+  isShowing = false;
+  showSubSubMenu: boolean = false;
 
+  mouseenter() {
+    if (!this.isExpanded) {
+      this.isShowing = true;
+    }
+  }
+
+  mouseleave() {
+    if (!this.isExpanded) {
+      this.isShowing = false;
+    }
+  }
 
   appitems = [
     {
@@ -36,15 +54,20 @@ export class MainNavComponent {
       icon: 'supervised_user_circle',
       items: [
         {
-          label: 'Utilisateur',
+          label: 'Utilisateurs',
           link: '/inviter',
           icon: 'supervisor_account',
 
         },
         {
-          label: 'Profil',
+          label: 'Profils',
           link: '/profile',
           icon: 'perm_identity'
+        },
+        {
+          label: 'Appareils',
+          link: '/device',
+          icon: 'watch'
         }
 
       ]
@@ -80,7 +103,7 @@ export class MainNavComponent {
     backgroundColor: `white`,
     selectedListFontColor: `red`,
     //highlightOnSelect: true,
-    collapseOnSelect: true,
+    collapseOnSelect: false,
     rtlLayout: false
   };
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)

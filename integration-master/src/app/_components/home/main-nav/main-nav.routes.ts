@@ -1,9 +1,9 @@
 import { Routes } from '@angular/router';
 import { MainNavComponent } from './main-nav.component';
-import { HomeComponent } from '../home/home.component';
-import { RegisterComponent } from '../register/register.component';
-import { ProfileComponent } from '../profile/profile.component';
-import { PatientComponent } from '../patient/patient.component';
+import { HomeComponent } from '../home.component';
+import { RegisterComponent } from '../../register/register.component';
+import { ProfileComponent } from '../../profile/profile.component';
+import { PatientComponent } from '../../patient/patient.component';
 
 export const mainNavRoutes : Routes = [
   {

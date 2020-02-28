@@ -2,26 +2,26 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
-import {environment} from "../../../environments/environment";
+import {environment} from "../../../../environments/environment";
 
 
 
 
 import { map, shareReplay } from 'rxjs/operators';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {AuthenticationService} from "../../_services";
+import {AuthenticationService} from "../../../_services";
 declare var  appitems ;
+import { NgZone } from '@angular/core';
 
 @Component({
-  selector: 'app-main-nav-sea',
-  templateUrl: './main-nav-sea.component.html',
-  styleUrls: ['./main-nav-sea.component.css']
+  selector: 'app-main-nav-prof',
+  templateUrl: './main-nav-prof.component.html',
+  styleUrls: ['./main-nav-prof.component.css']
 })
-export class MainNavSeaComponent {
+export class MainNavProfComponent {
  currentUser = localStorage.getItem("currentUser");
  obj : any;
  LOG_OUT_URL : string;
-
 
 
 
@@ -34,12 +34,12 @@ appitems  = [
       externalRedirect: true
     },
     {
-      label: 'Recherche',
+      label: 'Gestion',
       icon: 'supervised_user_circle',
       items: [
         {
-          label: 'Donnees Brutes',
-          link: '/patient',
+          label: 'Patient',
+          link: '/listpatient',
           icon: 'supervisor_account',
 
         }
@@ -78,9 +78,10 @@ appitems  = [
 
   constructor(private breakpointObserver: BreakpointObserver,
               private  authenticationService : AuthenticationService,
-              private router :  Router, private http: HttpClient) {
+              private router :  Router, private http: HttpClient,
+              public zone: NgZone) {
 
-          if (localStorage.getItem("currentRole" ) === "role_searcher")
+          if (localStorage.getItem("currentRole" ) === "role_professional")
           {  this.obj = JSON.parse(this.currentUser)
             this.LOG_OUT_URL = environment.LOG_OUT_URL;
 
@@ -89,6 +90,11 @@ appitems  = [
           }
 
 
+  }
+  toggleMenu() {
+    this.zone.run(()=>{
+
+    })
   }
   logOut() {
     this.authenticationService.logout()

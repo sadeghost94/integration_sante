@@ -2,6 +2,8 @@ import {Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs/operators';
+import { messages } from '../../_services/messages'
+
 import {MatSnackBar} from "@angular/material/snack-bar";
 
 
@@ -19,6 +21,8 @@ export class LoginComponent implements OnInit {
   loading = false;
   submitted = false;
 
+  page = "/register";
+
 
   constructor(
     private formBuilder: FormBuilder,
@@ -28,11 +32,35 @@ export class LoginComponent implements OnInit {
     private alertService: AlertService,
     private _snackBar : MatSnackBar
 ) {
+    for (let i =0 ; i<messages.length; i++)
+    {
+      let found =messages[i].page.indexOf(this.page)
+      console.log(found)
+      if(!(found <0)) {
+        console.log(this.page)
+        for (let j = 0; j < messages[i].value.length; j++){
+          let found1 = messages[i].value[j].status.indexOf("400")
+        }
+        console.log(messages[i].value[i].valeur)
+        return
+      }
+        if(i == messages.length -1 && found < 0){
+          this.page = null
+          console.log("pas de message pour cette page ")
+
+        }
+
+    }
+
+    console.log(this.page)
+
     // redirect to home if already logged in
     if (localStorage.getItem("currentRole")==="role_professional") {
-        this.router.navigate(['/homepro']);
+        this.router.navigate(['home/professional']);
     } else if(localStorage.getItem("currentRole")==="role_admin") {
        this.router.navigate(['/home']);
+    }else if(localStorage.getItem("currentRole")==="role_searcher") {
+      this.router.navigate(['/home/searcher']);
     }
 }
 
@@ -97,11 +125,17 @@ export class LoginComponent implements OnInit {
             },
             error => {
 
-              console.log(error)
                 this.loading = false;
                 //const err = JSON.parse(error);
+                console.log(error.error.error)
+                this._snackBar.open(error.description,"OK")
+              if(error.error.error === 'invalid_grant'){
 
-                this._snackBar.open(error.error.error_description,"OK")
+                this._snackBar.open(error.error.error_description,"OK")._dismissAfter(2000)
+              }else {
+                this._snackBar.open("Veuillez contacter l'admin","OK")._dismissAfter(2000)
+
+              }
 
 
             });

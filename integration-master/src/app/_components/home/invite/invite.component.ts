@@ -1,26 +1,35 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {Observable} from 'rxjs';
+import { RouterModule } from '@angular/router';
+
 import {FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {first} from 'rxjs/operators';
 import {MatSnackBar} from "@angular/material/snack-bar";
-
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+  // ...
+} from '@angular/animations';
 import {map, startWith} from 'rxjs/operators';
 
 
-import {AlertService, AuthenticationService, UserService} from '../../_services';
-import {UserRequestDto} from "../../dto";
+import {AlertService, AuthenticationService, UserService} from '../../../_services';
+import {UserRequestDto} from "../../../dto";
 import {ErrorStateMatcher} from '@angular/material/core';
 import {MatDatepickerInputEvent} from "@angular/material";
-import {AccountDto} from "../../dto/AccountDto";
-import {EmailDto} from "../../dto/EmailDto";
-import {RoleDto} from "../../dto/roleDto";
-import {InstitutionDto} from "../../dto/InstitutionDto";
-import {Profile} from "../../dto/Profile";
-import {AddressDto} from "../../dto/AddressDto";
+import {AccountDto} from "../../../dto/AccountDto";
+import {EmailDto} from "../../../dto/EmailDto";
+import {RoleDto} from "../../../dto/RoleDto";
+import {InstitutionDto} from "../../../dto/InstitutionDto";
+import {Profile} from "../../../dto/Profile";
+import {AddressDto} from "../../../dto/AddressDto";
 import {promise} from "selenium-webdriver";
-import  *  as  data  from  '../../data/ca.json';
-import {UserInviteDto} from "../../dto/UserInviteDto";
+import  *  as  data  from '../../../data/ca.json';
+import {UserInviteDto} from "../../../dto/UserInviteDto";
 
 
 /** Error when invalid control is dirty, touched, or submitted. */
@@ -41,7 +50,10 @@ export interface City {
           lng: string;
           population: string;
 }
-@Component({templateUrl: 'invite.component.html',styleUrls: ['./invite.component.css']})
+@Component(
+  {
+    templateUrl: 'invite.component.html',
+    styleUrls: ['./invite.component.css']})
 export class InviteComponent implements OnInit {
   inviterForm: FormGroup;
   loading = false;
@@ -72,8 +84,8 @@ export class InviteComponent implements OnInit {
     }
 
     this.profilelist = [
-      new Profile( "PROFESSIONAL", "role_professional",  true),
-      new Profile( "SEARCHER", "role_searcher",  true)
+      new Profile( "PROFESSIONAL", "ROLE_PROFESSIONAL",  true),
+      new Profile( "SEARCHER", "ROLE_SEARCHER",  true)
 
 
     ];
@@ -114,6 +126,10 @@ export class InviteComponent implements OnInit {
       .pipe(first())
       .subscribe(
         result => {
+          if(result["emailExist"]==true){
+            this._snackBar.open("l email existe deja","OK")
+            return
+          }
           console.log(result)
           this._snackBar.open("on a envoyer le mail","OK")
           this.router.navigate(["home"])
@@ -125,6 +141,9 @@ export class InviteComponent implements OnInit {
           } else {
             this.openSnackBar("le mail n`existe pas ","OK")
           }*/
+
+        }, error => {
+
 
         });
   }

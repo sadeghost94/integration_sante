@@ -45,6 +45,8 @@ export interface City {
 
 @Component({templateUrl: 'register.component.html', styleUrls: ['./register.component.css']})
 export class RegisterComponent implements OnInit {
+  page = this.router.url;
+
   stateCtrl = new FormControl();
   filteredStates: Observable<City[]>;
   registerForm: FormGroup;
@@ -2795,6 +2797,7 @@ export class RegisterComponent implements OnInit {
     private route: ActivatedRoute,
     private _snackBar: MatSnackBar
   ) {
+    console.log(this.page)
     this.filteredStates = this.stateCtrl.valueChanges
       .pipe(
         startWith(''),

@@ -55,24 +55,26 @@ export class AuthenticationService {
     })
       .pipe(map(token => {
           // login successful if there's a jwt token in the response
+
+
           if (token) {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
-
+            console.log(token)
             localStorage.setItem('currentToken', JSON.stringify(token));
             let code = localStorage.getItem('currentToken')
             let decoded = jwtDecode(code)
-            let role = decoded["authorities"]
+            let role = decoded["role"]
             console.log(role)
-            let found = role.indexOf("role_admin");
+/*            let found = role.indexOf("ROLE_ADMIN");
             if(found >= 0){
               console.log(found)
             }else {
-              found = role.indexOf("role_professional");
+              found = role.indexOf("ROLE_PROFESSIONAL");
               if(found  >= 0){
                 console.log(found)
                 } else
                 {
-                  found = role.indexOf("role_searcher");
+                  found = role.indexOf("ROLE_SEARCHER");
                   if(found  >= 0){
                     console.log(found)
                   } else
@@ -81,12 +83,11 @@ export class AuthenticationService {
                   }
                 }
 
-            }
-            console.log(role[found])
-            localStorage.setItem("currentRole",role[found])
+            }*/
+            console.log(role.toLowerCase( ))
+            localStorage.setItem("currentRole",role.toLowerCase( ))
             localStorage.setItem('currentUser', JSON.stringify(decoded));
             console.log(localStorage.getItem("currentRole"))
-            this.isAuthenticated();
 
           }
 
@@ -145,6 +146,7 @@ export class AuthenticationService {
     this.http.delete(this.LOG_OUT_URL, {headers: header})
       .subscribe(response => {
 
+          console.log(response)
           this.router.navigate(["/login"])
           localStorage.removeItem("currentUser")
           localStorage.removeItem("currentToken")
@@ -152,7 +154,10 @@ export class AuthenticationService {
 
 
         },
-        error => console.log(error)
+        error =>
+        {
+
+        }
       );
 
   }

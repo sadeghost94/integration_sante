@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {AuthenticationService} from "../../_services";
 import {Router} from '@angular/router';
+import {ListPatientsComponent} from "./list-patients/list-patients.component";
+
 
 
 @Component({
@@ -8,10 +10,13 @@ import {Router} from '@angular/router';
   templateUrl: './patient.component.html',
   styleUrls: ['./patient.component.css']
 })
-export class PatientComponent implements OnInit {
+export class PatientComponent implements AfterViewInit {
+  @ViewChild(ListPatientsComponent,{static: false}) child;
+  loading = false;
+  patient = false;
   currentUser = localStorage.getItem("currentUser");
   constructor(private router: Router,
-    private authenticationService: AuthenticationService,) {
+    private authenticationService: AuthenticationService) {
     if (localStorage.getItem("currentRole" ) === "role_professional") {
 
 
@@ -22,6 +27,11 @@ export class PatientComponent implements OnInit {
   }
 
   ngOnInit() {
+
+  }
+  ngAfterViewInit() {
+    this.patient = this.child.addpatient;
+    console.log(this.child.addpatient)
 
   }
 
