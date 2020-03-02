@@ -147,10 +147,11 @@ export class AuthenticationService {
       .subscribe(response => {
 
           console.log(response)
-          this.router.navigate(["/login"])
+
           localStorage.removeItem("currentUser")
           localStorage.removeItem("currentToken")
           localStorage.removeItem("currentRole")
+          this.router.navigate(["/"])
 
 
         },

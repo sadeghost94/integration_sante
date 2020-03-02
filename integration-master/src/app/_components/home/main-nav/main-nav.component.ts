@@ -59,11 +59,7 @@ export class MainNavComponent {
           icon: 'supervisor_account',
 
         },
-        {
-          label: 'Profils',
-          link: '/profile',
-          icon: 'perm_identity'
-        },
+
         {
           label: 'Appareils',
           link: '/device',
@@ -71,37 +67,18 @@ export class MainNavComponent {
         }
 
       ]
-    },
-    {
-      label: 'MOTEUR DE SUGGESSION',
-      icon: 'build',
-      items: [
-        {
-          label: ' MODELE ',
-          link: '/home',
-          icon: 'add_circle',
-
-
-        },
-        {
-          label: 'ENTRAINEMENT',
-          link: '/home',
-          icon: 'toggle_off',
-
-
-        }
-      ]
     }
+
 
   ];
   config = {
-    paddingAtStart: false,
+    paddingAtStart: true,
     interfaceWithRoute: true,
     classname: 'my-custom-class',
     listBackgroundColor: `white`,
     fontColor: `#323232`,
     backgroundColor: `white`,
-    selectedListFontColor: `red`,
+    selectedListFontColor: `blue`,
     //highlightOnSelect: true,
     collapseOnSelect: false,
     rtlLayout: false

@@ -28,7 +28,7 @@ import { NgMaterialMultilevelMenuModule } from 'ng-material-multilevel-menu';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import {MatInputModule} from "@angular/material";
 import { Error404Component } from './_components/error404/error404.component';
-import {MainNavModule} from "./_components/home/main-nav/main-nav.module";
+import {HomeModule} from "./_components/home/home.module";
 import {RegisterComponent} from "./_components/register/register.component";
 import {HomeComponent} from "./_components/home/home.component";
 import {ProfileComponent} from "./_components/profile/profile.component";
@@ -74,16 +74,16 @@ import { PatientloginComponent } from './_components/patientlogin/patientlogin.c
     ProfileComponent,
     PatientComponent,
     MainNavComponent,
+    DevicesComponent,
+    ListPatientsComponent,
     ForgetpasswordComponent,
     ConfirmaccountComponent,
     ResetpasswordComponent,
-    InviteComponent,
     MainNavProfComponent,
     HomeProComponent,
     ListUsersComponent,
     HomeseaComponent,
     RechercheComponent,
-    ListPatientsComponent,
     PatientProfileComponent,
     AddpatientComponent,
     ExamencliniqueComponent,
@@ -92,16 +92,10 @@ import { PatientloginComponent } from './_components/patientlogin/patientlogin.c
     ListVisitesComponent,
     RapportComponent,
     AffectpodometreComponent,
-    DevicesComponent,
     RecomandationComponent,
     PagepatientComponent,
     PatientloginComponent,
-
-
-
-
-
-
+    InviteComponent,
 
 
   ],
@@ -123,7 +117,7 @@ import { PatientloginComponent } from './_components/patientlogin/patientlogin.c
     RouterModule,
     MatInputModule,
     NgMaterialMultilevelMenuModule,
-    MainNavModule,
+    HomeModule,
     MainNavModuleProf,
     RouterModule,
     ChartsModule,
@@ -134,7 +128,9 @@ import { PatientloginComponent } from './_components/patientlogin/patientlogin.c
 
     SchedulerModule
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
+//{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+  providers: [],
+  exports: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

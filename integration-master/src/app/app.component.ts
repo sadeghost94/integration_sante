@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, SimpleChanges} from '@angular/core';
 import { environment } from 'src/environments/environment';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,25 @@ import { environment } from 'src/environments/environment';
 
 export class AppComponent {
   title = 'IPOD-SANTE';
-  constructor (){
+  currentRole = localStorage.getItem("currentRole")
+
+  constructor (private router : Router){
+    if (this.currentRole==undefined) {
+      this.router.navigate(["/"])
+
+
+    }
+
+
 
   }
+  ngOnInit() {
+
+  }
+  ngOnChanges(changes: SimpleChanges) {
+
+
+  }
+
+
 }

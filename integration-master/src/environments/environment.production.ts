@@ -22,7 +22,13 @@ export const environment = {
   LOGIN_PATIENT : "https://epod-zuul.herokuapp.com/api/v1/patient-service/login",
   ADD_DEVICE : "https://epod-zuul.herokuapp.com/api/v1/fitbit-service/device",
   RM_DEVICE : "https://epod-zuul.herokuapp.com/api/v1/fitbit-service/device",
-  LIST_USER : "https://epod-zuul.herokuapp.com/api/v1/fitbit-service/device/all"
+  LIST_DEVICES : "https://epod-zuul.herokuapp.com/api/v1/fitbit-service/device/all",
+  AUTH_DEVICE : "https://epod-zuul.herokuapp.com/api/v1/fitbit-service/device/authorization",
+  LIST_DEVICE_AVAILABLE :"https://epod-zuul.herokuapp.com/api/v1/fitbit-service/device/all/available/institution",
+  AFFECT_DEVICE :"https://epod-zuul.herokuapp.com/api/v1/fitbit-service/device/assign"
+
+
+
 
 
 

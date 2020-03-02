@@ -160,7 +160,6 @@ export class ListPatientsComponent implements OnInit {
       this.dataSource.data.push(this.newPatient)
 
 
-
     });
     // console.log("yes "+this.users)
   }

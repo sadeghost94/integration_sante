@@ -13,10 +13,10 @@ export class HomeComponent implements OnInit {
   //@ViewChild(MainNavComponent, {static: true} ) child;
   //@Input() is_admin : boolean = false;
   currentUser = localStorage.getItem("currentUser")
+  currentRole = localStorage.getItem("currentRole")
   @ViewChild(AppComponent, {static: false}) child;
   constructor(private router : Router) {
     if (localStorage.getItem("currentRole" ) === "role_admin") {
-
     } else {
       router.navigate(["/"])
     }

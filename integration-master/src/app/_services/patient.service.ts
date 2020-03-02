@@ -23,6 +23,8 @@ export class PatientService {
   GET_PATIENT_BY_ID : string;
   VERIF_TOKEN_PATIENT : string;
   LOGIN_PATIENT : string;
+  LIST_DEVICE_AVAILABLE : string;
+  AFFECT_DEVICE : string;
 
 
   constructor(private http : HttpClient) {
@@ -35,6 +37,8 @@ export class PatientService {
     this.GET_PATIENT_BY_ID = environment.GET_PATIENT_BY_ID
     this.VERIF_TOKEN_PATIENT = environment.VERIF_TOKEN_PATIENT
     this.LOGIN_PATIENT = environment.LOGIN_PATIENT;
+    this. LIST_DEVICE_AVAILABLE = environment.LIST_DEVICE_AVAILABLE
+    this.AFFECT_DEVICE = environment.AFFECT_DEVICE
   }
 
 
@@ -151,6 +155,25 @@ export class PatientService {
 
         })
       );
+
+
+  }
+  //podometres
+  getPodosavailable() {
+    let token = localStorage.getItem("currentToken");
+    const obj = JSON.parse(token);
+    let header = new HttpHeaders({'Authorization': "bearer " + obj.access_token});
+    return this.http.get(this.LIST_DEVICE_AVAILABLE, {headers: header})
+
+  }
+  affectPodo(request : Request){
+    let token = localStorage.getItem("currentToken");
+    const obj = JSON.parse(token);
+    let header = new HttpHeaders({'Authorization': "bearer "+obj.access_token,'Content-Type': 'application/json'} );
+    console.log(obj.access_token)
+    return this.http.post(this.AFFECT_DEVICE, request, {headers: header});
+
+
 
 
   }
