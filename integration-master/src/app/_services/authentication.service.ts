@@ -151,7 +151,7 @@ export class AuthenticationService {
           localStorage.removeItem("currentUser")
           localStorage.removeItem("currentToken")
           localStorage.removeItem("currentRole")
-          this.router.navigate(["/"])
+          this.router.navigate(["/login"])
 
 
         },

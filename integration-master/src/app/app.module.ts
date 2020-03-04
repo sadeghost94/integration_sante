@@ -28,11 +28,10 @@ import { NgMaterialMultilevelMenuModule } from 'ng-material-multilevel-menu';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import {MatInputModule} from "@angular/material";
 import { Error404Component } from './_components/error404/error404.component';
-import {HomeModule} from "./_components/home/home.module";
 import {RegisterComponent} from "./_components/register/register.component";
 import {HomeComponent} from "./_components/home/home.component";
 import {ProfileComponent} from "./_components/profile/profile.component";
-import {PatientComponent} from "./_components/patient/patient.component";
+import {PatientComponent} from "./_components/home-pro/patient/patient.component";
 import { ForgetpasswordComponent } from './_components/forgetpassword/forgetpassword.component';
 import { ConfirmaccountComponent } from './_components/confirmaccount/confirmaccount.component';
 import {MatSnackBar} from "@angular/material";
@@ -45,21 +44,31 @@ import { ListUsersComponent } from './_components/home/list-users/list-users.com
 import { HomeseaComponent } from './_components/homesea/homesea.component';
 import {MainNavSeaComponent} from "./_components/homesea/main-nav-sea/main-nav-sea.component";
 import { RechercheComponent } from './_components/homesea/recherche/recherche.component';
-import { ListPatientsComponent } from './_components/patient/list-patients/list-patients.component';
-import {PatientProfileComponent} from './_components/patient/patient-profile/patient-profile.component';
-import { AddpatientComponent } from './_components/patient/addpatient/addpatient.component';
-import { ExamencliniqueComponent } from './_components/patient/examenclinique/examenclinique.component';
-import { SociodemoComponent } from './_components/patient/sociodemo/sociodemo.component';
-import { AntecedantsComponent } from './_components/patient/antecedants/antecedants.component';
+import { ListPatientsComponent } from './_components/home-pro/patient/list-patients/list-patients.component';
+import {PatientProfileComponent} from './_components/home-pro/patient/patient-profile/patient-profile.component';
+import { AddpatientComponent } from './_components/home-pro/patient/addpatient/addpatient.component';
+import { ExamencliniqueComponent } from './_components/home-pro/patient/examenclinique/examenclinique.component';
+import { SociodemoComponent } from './_components/home-pro/patient/sociodemo/sociodemo.component';
+import { AntecedantsComponent } from './_components/home-pro/patient/antecedants/antecedants.component';
 import { SchedulerModule } from '@progress/kendo-angular-scheduler';
-import { ListVisitesComponent } from './_components/patient/list-visites/list-visites.component';
-import { RapportComponent } from './_components/patient/rapport/rapport.component';
-import { AffectpodometreComponent } from './_components/patient/affectpodometre/affectpodometre.component';
+import { ListVisitesComponent } from './_components/home-pro/patient/list-visites/list-visites.component';
+import { RapportComponent } from './_components/home-pro/patient/rapport/rapport.component';
+import { AffectpodometreComponent } from './_components/home-pro/patient/affectpodometre/affectpodometre.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import { DevicesComponent } from './_components/home/devices/devices.component';
-import { RecomandationComponent } from './_components/patient/recomandation/recomandation.component';
+import { RecomandationComponent } from './_components/home-pro/patient/recomandation/recomandation.component';
 import { PagepatientComponent } from './_components/pagepatient/pagepatient.component';
-import { PatientloginComponent } from './_components/patientlogin/patientlogin.component';
+import { PatientloginComponent } from './_components/pagepatient/patientlogin/patientlogin.component';
+import {BreqComponent} from "./_components/pagepatient/Breq/breq.component";
+import {QuizComponent} from "./_components/pagepatient/Breq/quiz/quiz.component";
+import {ModalModule} from "./_components/_modal";
+import {CreaterdvComponent} from "./_components/createrdv/createrdv.component";
+import {RdvComponent} from "./_components/home-pro/rdv/rdv.component";
+import {HomeRoutingModule} from "./_components/home/home-routing.module";
+import {HomeProRoutingModule} from "./_components/home-pro/home-pro.routing.module";
+import {HomeSeaRoutingModule} from "./_components/homesea/homesea.routing.module";
+import {PagePatientRoutingModule} from "./_components/pagepatient/pagepatient.routing";
+
 
 
 
@@ -96,12 +105,21 @@ import { PatientloginComponent } from './_components/patientlogin/patientlogin.c
     PagepatientComponent,
     PatientloginComponent,
     InviteComponent,
+    BreqComponent,
+    QuizComponent,
+    CreaterdvComponent,
+    RdvComponent
 
 
   ],
   imports: [
     BrowserModule,
+    ModalModule,
     FlexLayoutModule,
+    HomeRoutingModule,
+    HomeProRoutingModule,
+    HomeSeaRoutingModule,
+    PagePatientRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
@@ -117,7 +135,6 @@ import { PatientloginComponent } from './_components/patientlogin/patientlogin.c
     RouterModule,
     MatInputModule,
     NgMaterialMultilevelMenuModule,
-    HomeModule,
     MainNavModuleProf,
     RouterModule,
     ChartsModule,

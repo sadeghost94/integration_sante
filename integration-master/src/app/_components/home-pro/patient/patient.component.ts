@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
-import {AuthenticationService} from "../../_services";
+import {AuthenticationService} from "../../../_services";
 import {Router} from '@angular/router';
 import {ListPatientsComponent} from "./list-patients/list-patients.component";
 

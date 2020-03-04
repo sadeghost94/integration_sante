@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, SimpleChanges, ViewChild} from '@angular/core';
+import {Component,  OnInit, SimpleChanges} from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs/operators';
@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
   loading = false;
   submitted = false;
 
-  page = "/register";
+  page = this.router.url;
 
 
   constructor(
@@ -46,18 +46,18 @@ export class LoginComponent implements OnInit {
 
 
       for (let i = 0; i < messages.length; i++) {
-        let found = messages[i].page.indexOf(this.page)
-        console.log(found)
+        let found = messages[i].page.indexOf(this.page);
+        console.log(found);
         if (!(found < 0)) {
-          console.log(this.page)
+          console.log(this.page);
           for (let j = 0; j < messages[i].value.length; j++) {
-            let found1 = messages[i].value[j].status.indexOf("400")
+            messages[i].value[j].status.indexOf("400");
           }
-          console.log(messages[i].value[i].valeur)
+          console.log(messages[i].value[i].valeur);
           return
         }
         if (i == messages.length - 1 && found < 0) {
-          this.page = null
+          this.page = null;
           console.log("pas de message pour cette page ")
 
         }

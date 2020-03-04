@@ -1,13 +1,13 @@
 import {Component, OnInit, SimpleChanges, ViewChild} from '@angular/core';
-import {UserRequestDto} from "../../../dto";
+import {UserRequestDto} from "../../../../dto";
 import {MatSort} from "@angular/material/sort";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatTableDataSource} from "@angular/material/table";
 
 import {BreakpointObserver} from "@angular/cdk/layout";
 import {Router} from "@angular/router";
-import {PatientService} from "../../../_services/patient.service";
-import {PatientDto} from "../../../dto/patient/PatientDto";
+import {PatientService} from "../../../../_services/patient.service";
+import {PatientDto} from "../../../../dto/patient/PatientDto";
 import {AddpatientComponent} from "../addpatient/addpatient.component";
 
 @Component({
@@ -156,6 +156,7 @@ export class ListPatientsComponent implements OnInit {
     this.patientService.getAll().subscribe( patients => {
       // let tabusers = JSON.parse(JSON.stringify(users.toString()))
       let pat = JSON.parse(JSON.stringify(patients))
+      console.log(pat)
       this.dataSource.data = pat.object as PatientDto[]
       this.dataSource.data.push(this.newPatient)
 

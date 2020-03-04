@@ -1,18 +1,14 @@
-import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
+import {Component,  ViewChild} from '@angular/core';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import {Observable} from 'rxjs';
-import { RouterModule } from '@angular/router';
-import {Router, ActivatedRoute} from '@angular/router';
-import {environment} from "../../../../environments/environment";
+import {Router} from '@angular/router';
 
 
 import {first, map, shareReplay} from 'rxjs/operators';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {LoginClientDTO} from "../../../dto/LoginClientDTO";
 import {AuthenticationService} from "../../../_services";
 import {MatSidenav} from "@angular/material/sidenav";
 
-declare var appitems;
 
 @Component({
   selector: 'app-main-nav',
@@ -55,14 +51,14 @@ export class MainNavComponent {
       items: [
         {
           label: 'Utilisateurs',
-          link: '/inviter',
+          link: 'inviter',
           icon: 'supervisor_account',
 
         },
 
         {
           label: 'Appareils',
-          link: '/device',
+          link: 'device',
           icon: 'watch'
         }
 

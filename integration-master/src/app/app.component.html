@@ -8,8 +8,6 @@
 </mat-toolbar>
 -->
 
-<app-main-nav-prof *ngIf='currentRole=="role_professional"'></app-main-nav-prof>
-<app-main-nav-sea *ngIf='currentRole=="role_searcher"'></app-main-nav-sea>
-<app-main-nav *ngIf='currentRole=="role_admin"'></app-main-nav>
+<!--<app-main-nav-sea *ngIf='currentRole=="role_searcher" &&( router.url!="/login" &&  router.url !="/patient/login" &&  router.url !="/patient/questionnaire")'></app-main-nav-sea>-->
 
 <router-outlet></router-outlet>

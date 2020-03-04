@@ -3,7 +3,7 @@ import { MainNavSeaComponent } from './main-nav-sea.component';
 import { HomeComponent } from '../../home/home.component';
 import { RegisterComponent } from '../../register/register.component';
 import { ProfileComponent } from '../../profile/profile.component';
-import { PatientComponent } from '../../patient/patient.component';
+import { PatientComponent } from '../../home-pro/patient/patient.component';
 import {HomeProComponent} from "../../home-pro/home-pro.component";
 import {HomeseaComponent} from "../homesea.component";
 

@@ -13,11 +13,7 @@ export class AppComponent {
   currentRole = localStorage.getItem("currentRole")
 
   constructor (private router : Router){
-    if (this.currentRole==undefined) {
-      this.router.navigate(["/"])
 
-
-    }
 
 
 

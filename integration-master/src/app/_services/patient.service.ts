@@ -25,6 +25,7 @@ export class PatientService {
   LOGIN_PATIENT : string;
   LIST_DEVICE_AVAILABLE : string;
   AFFECT_DEVICE : string;
+  RECUP_DEVICE: string;
 
 
   constructor(private http : HttpClient) {
@@ -39,6 +40,7 @@ export class PatientService {
     this.LOGIN_PATIENT = environment.LOGIN_PATIENT;
     this. LIST_DEVICE_AVAILABLE = environment.LIST_DEVICE_AVAILABLE
     this.AFFECT_DEVICE = environment.AFFECT_DEVICE
+    this.RECUP_DEVICE = environment.RECUP_DEVICE
   }
 
 
@@ -159,11 +161,36 @@ export class PatientService {
 
   }
   //podometres
-  getPodosavailable() {
+  getPodosavailable(id: string) {
+    let token = localStorage.getItem("currentToken");
+    let params = new HttpParams().set('patientId',id)
+    const obj = JSON.parse(token);
+    let header = new HttpHeaders({'Authorization': "bearer " + obj.access_token});
+    return this.http.get(this.LIST_DEVICE_AVAILABLE, {headers: header, params: params})
+
+  }
+  recup_podo(request : Request){
     let token = localStorage.getItem("currentToken");
     const obj = JSON.parse(token);
     let header = new HttpHeaders({'Authorization': "bearer " + obj.access_token});
-    return this.http.get(this.LIST_DEVICE_AVAILABLE, {headers: header})
+    return this.http.post(this.RECUP_DEVICE, request, {
+      headers: header})
+
+      .pipe(map(token => {
+          // login successful if there's a jwt token in the response
+          console.log(token)
+
+          if (token) {
+            // store user details and jwt token in local storage to keep user logged in between page refreshes
+            console.log(token)
+            return token;
+
+          }
+          return token;
+
+        })
+      );
+
 
   }
   affectPodo(request : Request){
